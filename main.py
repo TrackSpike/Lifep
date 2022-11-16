@@ -39,6 +39,21 @@ def apply(p, env):
             new_env.set(defs[i].value, EVAL(defs[i+1], new_env))
             i += 2
         return EVAL(p[2], new_env)
+    elif p[0].value == "do":
+        last = None
+        for e in p[1:]:
+            last = eval_ast(e, env)
+        return last
+    elif p[0].value == "if":
+        condition = EVAL(p[1], env)
+        if condition != None and condition != False:
+            return EVAL(p[2], env)
+        elif len(p) > 3:
+            return EVAL(p[3], env)
+        else:
+            return None
+    elif p[0].value == "fn*":
+        pass
     # Default
     else:
         p = eval_ast(p, env)
