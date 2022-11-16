@@ -1,4 +1,4 @@
-# Lifep
+# LiFep
 Lifep (Lisp Interpreter For Educational Purposes) 
 
 With inspiration from https://github.com/kanaka/mal
