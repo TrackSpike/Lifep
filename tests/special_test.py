@@ -47,3 +47,32 @@ class TestMethods(unittest.TestCase):
         input = "(if False 1)"
         expected = "None"
         self.assertTrue(drive(input, expected))
+    
+    def test_fn(self):
+        input = "(fn* (a) a)"
+        expected = "Function"
+        self.assertTrue(drive(input, expected))
+
+        input = "( (fn* (a) a) 7)"
+        expected = "7"
+        self.assertTrue(drive(input, expected))
+
+        input = "( (fn* (a) (+ a 1)) 10)"
+        expected = "11"
+        self.assertTrue(drive(input, expected))
+
+        input = "( (fn* (a b) (+ a b)) 2 3)"
+        expected = "5"
+        self.assertTrue(drive(input, expected))
+
+        input = "(def! fib (fn* (N) (if (= N 0) 1 (if (= N 1) 1 (+ (fib (- N 1)) (fib (- N 2)))))))"
+        expected = "Function"
+        self.assertTrue(drive(input, expected))
+
+        input = "(fib 1)"
+        expected = "1"
+        self.assertTrue(drive(input, expected))
+
+        input = "(fib 10)"
+        expected = "89"
+        self.assertTrue(drive(input, expected))

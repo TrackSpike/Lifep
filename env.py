@@ -1,7 +1,7 @@
 class Env:
-    def __init__(self, outer):
+    def __init__(self, outer, keys={}):
         self.outer = outer
-        self.data = {}
+        self.data = keys
     
     def set(self, key, value):
         self.data[key] = value
@@ -18,4 +18,4 @@ class Env:
         env = self.find(key)
         if not env:
             raise Exception(f"Cannot find {key}")
-        return self.data[key]
+        return env.data[key]
